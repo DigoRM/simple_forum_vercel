@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block title %} Unauthorized {% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h3 class="subtitle is-5 mb-6">I'm sorry {{user}}, it seems you don't have the required permission for this.</h3>
+    <p class="subtitle is-6 ">If you want to contribute with this blog, send an email to rmarcolino.consultoria@gmail.com</p>
+    <a class="subtitle is-6 " href="{% url 'profile' %}">Don't forget complete you profile, in order to earn the required permissions :)</a>
+
+
+    <figure class="image img">
+      <img src="/media/forbidden.png">
+  </figure>
+  </div>
+  {% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'blog/base.html' %}
+{% block title %} About {% endblock %}
+
+{% block content %}
+<style>
+	.profile-pic{
+		max-width: 300px;
+		max-height:300px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+
+
+</style>
+
+<br>
+<div >
+    <a class="button is-danger" style="margin-bottom:20px;" href="{% url 'home' %}"> &#8592; Back</a>
+
+    <div class="columns is-horizontal">
+        <div class="column is-4">
+            <div class="card card-body">
+                <div calss="card-header">
+                    <div class="card-header-title is-centered is-vcentered">
+                        <strong>My Profile</strong>
+                    </div>
+                    <hr>
+
+                </div>
+
+                <div style="text-align: center;">
+                    {% if request.user.customer.profile_pic %}
+                    <img class="profile-pic" src="{{request.user.customer.profile_pic.url}}" >
+                    {% endif %}
+                    <form method="POST" class="mb-6" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form_image.as_p}}
+                        <br>
+                    <div class="has-text-centered">
+                        <button class="button is-info is-rounded is-small mb-6">
+                            <div style="object-fit:cover;">
+                                <img src="/media/v.png" class="image is-24x24 " >
+                            </div>
+                        </button>
+                    </div>
+                    </form>
+                </div>            
+            </div>
+        </div>
+        <div class="column">
+            <div class="card card-content">               
+                <form method="POST" class="mb-6" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <br>
+                <div class="has-text-centered">
+                    <button class="button is-success" type="submit" name="Update Information", style="color: black;">Update</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

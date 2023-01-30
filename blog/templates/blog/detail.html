@@ -1,0 +1,161 @@
+{% extends 'blog/base.html' %}
+{% block title %} Details {% endblock %}
+
+
+{% block content %}
+
+<style>
+	.profile-pic{
+		max-width: 100px;
+		max-height:100px;
+		margin: 0 auto;
+		border-radius: 100%;
+	}
+  .profile-pic2{
+		max-width: 150px;
+		max-height:150px;
+		margin: 0 auto;
+		border-radius: 100%;
+	}
+
+</style>
+
+
+<section class="hero ">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-8 is-offset-2">
+          </div>
+        </div>
+        <section class="hero">
+
+            {% if post.image %}
+            <figure class="image mb-6">
+                <img src="{{ post.image.url }}">
+            </figure>
+            {% endif %}
+
+          <div class="columns">
+
+            <div class="column is-9 is-offset-2">
+              <div class="content is-medium"><div class="columns">
+                <div class="column is-vertical-center">
+                    <div class="title is-size-5">
+                      <strong>Category: </strong><a href="{% url 'category_detail' post.category.slug %}">{{ post.category }}</a>
+                    </div>
+                    <div class="subtitle is-size-5">
+                      <h2 class="subtitle is-6 is-centered">Published at {{ post.created_at|timesince}} ago</h2> 
+                    </div>
+                </div>
+
+                <div class="column">
+                  {% if post.author.customer.profile_pic.url %}
+                  <div class="has-text-centered">
+                    <h2 class="subtitle is-6">Post created by <a href="{% url 'user_profile' user_id=post.author.id %}">{{post.author}}</a></h2> 
+
+                    <img class="profile-pic2" src="{{ post.author.customer.profile_pic.url }}">
+
+                  </div>
+                  {% endif %}
+                     
+                </div>
+              </div>
+              <div class="hero">
+                <h1 class="title">{{ post.title }}</h1>
+                <p><strong>{{ post.intro }}</p></strong>
+                <div class="hero is-centered mb-6">
+                  <p>{{ post.body }}</p>
+                </div>
+                <div class="hero has-text-centered">
+                  <form method="post" action="{% url 'like_post' post.category.slug post.slug %}">
+                    {% csrf_token %}
+                        <button class="button is-ghost mb-6" type="submit" value="Like">
+                          <div style="object-fit:cover;">
+                            {% if user_liked %}
+                            <img class="image is-24x24" src="/media/heart-icon-3346.png" >
+                            {% else %}
+                            <img class="image is-24x24" src="/media/emptyheart.png" >
+                            {% endif %}
+                          </div>
+                        </button>
+                        {% if users_who_liked_post %}
+                          {% if users_who_liked_post.count == 1 %}
+                          <span class="tag is-medium is-ghost" style="margin-top: 10px;">
+                            {{ users_who_liked_post.count }} user liked this post
+                          </span>
+                          {% else %}
+                          <span class="tag is-medium is-ghost" style="margin-top: 10px;">
+                            {{ users_who_liked_post.count }} users liked this post
+                          </span>
+                          {% endif %}
+                        {% endif %}
+                  </form>
+                </div>
+
+              </div>
+                   
+                    
+                  
+
+      
+                
+
+                <div class="card mb-6">
+                  <div class="card card-header-title">Comments</div>
+                  {% for comment in post.comments.all %}
+                  <article class="card-content">
+                      <div class="content">
+                        <div class="card">
+                          <div class="columns">
+                            <div class="column is-3 has-text-centered">
+                              <div class="media ">
+                                   {% if comment.author.customer.profile_pic.url %}
+                                  <img class="profile-pic" src="{{ comment.author.customer.profile_pic.url }}">
+                                  {% endif %}
+                              </div>
+                              <h3 class="title is-size-6"><a href="{% url 'user_profile' user_id=comment.author.id %}">{{ comment.author.username }}</a></h3>
+                              <h4 class="subtitle is-size-7"><small>{{ comment.created_at|timesince }}</small></h4>
+                        </div>
+                            <div class="column is-9 is-vertical-center">
+                              <div class="card-content ">
+                                <div class="is-vcentered">{{ comment.body }}</div>
+
+                              </div>
+                            </div>
+
+                          </div>
+                           
+                        </div>
+                          
+                      </div>
+                  </article>
+                  {% endfor %}
+                  <br><br>
+                </div>
+
+             {% if user.is_authenticated %}
+                <div class="box">
+                  <h2 class="title is-5 has-text-centered">Make a Comment</h2>
+                  <div class="box-content">
+                    <form method="post" class="mb-6">
+                      {% csrf_token %}
+                        {{ form.as_p }}
+                      <div class="control">
+                        <div class="has-text-centered"><button class="button is-success">Submit</button></div>
+                          
+                      </div>
+                  </form>
+                  {% endif %}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+
+{% block title %} Categories {% endblock %}
+
+
+
+
+{% block content %}
+<section class="hero ">
+    <div class="hero-body">
+      <div class="container">
+
+        {% for category in categories %}
+        <section class="section">
+          <div class="columns">
+            <div class="column is-8 is-offset-2">
+              <div class="content is-medium">
+                
+
+
+                <a href="{% url 'category_detail' category.slug %}">
+                    <h2 class="subtitle is-4">{{ category.created_at|timesince }}</h2>
+                    <div class="is-pulled-left is-flex"> 
+                        <h1 class="title">{{ category.title }} </h1> 
+                        <div style="margin-left:18px; margin-top: 19px;">({{category.posts.count }})</div>
+                    </div>
+                    
+                
+              </div>
+            </div>
+          </div>
+        </section>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endblock %}

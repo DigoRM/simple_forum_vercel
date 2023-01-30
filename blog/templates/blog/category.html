@@ -1,0 +1,121 @@
+{% extends 'blog/base.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block content %}
+<style>
+	.profile-pic{
+		max-width: 120px;
+		max-height:120px;
+		margin: 0 auto;
+		border-radius: 100%;
+	}
+
+</style>
+
+<section class="hero ">
+    <div class="hero-body">
+      <div class="title has-text-centered">
+        Recent Posts
+      </div>
+      <div class="container">
+
+        {% for post in posts %}
+        <section class="section">
+   
+
+
+
+
+                <div class="box">
+                  {% if post.image %}
+                  <a href="{% url 'post_detail' post.category.slug post.slug %}">
+                  <div class="hero">
+                    <figure class="image img is-fullwidth mb-6">
+                      <img src="{{ post.image.url }}">
+                  </figure>
+                  </div>
+                  </a>
+                  {% endif %}
+
+
+                  <div class="columns">
+                    <div class="column is-9">
+                      <a href="{% url 'post_detail' post.category.slug post.slug %}">
+                        <h1 class="title ">{{ post.title }}</h1>
+                        <h3 class="tag">Published at {{ post.created_at|timesince }}</h3>                      
+                      </a>
+                      <div class="card-content mt-2 is-flex">
+                        <div class="justify-content">{{ post.intro }}</div>
+                      </div>
+                    </div>
+                    <a href="{% url 'user_profile' post.author.id %}">
+                      <div class="column is-3 has-text-centered">
+                        <div class="media mb-2 has-text-centered is-flex">
+                            {% if post.author.customer.profile_pic.url %}
+                            <img class="profile-pic" src="{{ post.author.customer.profile_pic.url }}">
+                            {% endif %}
+                        </div>
+                        <h3 class="subtitle is-size-6 mt-5">{{ post.author.username }}</h3></a>
+                  </div>
+                </div>
+                    </a>
+
+                      <footer class="card-footer has-text-centered">
+
+
+                        <a href="#" class="card-footer-item">
+                          <span class="tag is-medium is-ghost" style="margin-top: 10px;">
+                            <div class="image">
+                              <img class="image is-24x24 " src="/media/heart.png" >
+                            </div>
+                            {% if post.likes.count > 0 %}
+                              {% if post.likes.count == 1 %}
+                              <div style="margin-left: 7px;">
+                                {{ post.likes.count }} like
+                              </div>
+                              {% else %}
+                              <div style="margin-left: 7px;">
+                                {{ post.likes.count }} likes
+                              </div>                        
+                          </span>
+                              {% endif %}
+                            {% endif %}
+                        </a>
+                        
+                        <a href="#" class="card-footer-item">
+                          <span class="tag is-medium is-ghost" style="margin-left: 10px;" >
+                            <div class="image">
+                              <img class="image is-24x24 " src="/media/chat.png" >
+                            </div>
+                            {% if post.num_comments %}
+                              {% if post.num_comments == 1 %}
+                              <div style="margin-left: 7px;">
+                                {{ post.num_comments }} comment
+                              </div>
+                              {% else %}
+                              <div style="margin-left: 7px;">
+                                {{ post.num_comments }} comments
+                              </div>                        
+                          </span>
+                              {% endif %}
+                            {% endif %}
+
+                        </a>
+
+    
+                      </footer>
+
+                  
+
+
+
+                </div>
+                
+        </section>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endblock %}
