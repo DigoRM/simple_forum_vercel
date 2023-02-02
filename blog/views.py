@@ -36,6 +36,7 @@ def most_liked(request):
 
 
 @login_required
+@admin_only
 def new_post(request):
     user = request.user    
     if request.method == "POST":
