@@ -69,8 +69,8 @@
 		}
 
 		#messages{
-			background-color: grey;
-			color: #fff;
+			background-color: white;
+			color: red;
 			padding: 10px;
 			margin-top: 10px;
 		}
@@ -109,8 +109,11 @@
 
 				</div>
                 {% for message in messages %}
-                <div>
-                    <p id="'messages">{{message}}</p>
+                <div class="columns">
+					<div class="column">
+						<p style="color: red;padding: 20px;margin-top: 20px;">* {{message}}</p>
+
+					</div>
                 </div>
                 
 

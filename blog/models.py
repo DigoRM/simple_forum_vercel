@@ -16,7 +16,7 @@ class Customer(models.Model):
     role = models.CharField(max_length=255, null=True, blank=True)
     skills = models.TextField(null=True, blank=True) 
     interests = models.TextField(null=True, blank=True) 
-    profile_pic = models.ImageField(default="/media/profile1.png", null=True, blank=True)
+    profile_pic = models.ImageField(default="/profile1.png", null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     
     def email(self):

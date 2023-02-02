@@ -16,8 +16,8 @@
               font-family: 'Nunito', sans-serif;
             };
             nav.navbar {
-            height: 6rem !important;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0), 0 1px 2px 0 rgba(0, 0, 0, .06) !important;
+            height: 6rem ;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0), 0 1px 2px 0 rgba(0, 0, 0, .06) ;
             }
 
             .hello-msg{
@@ -52,16 +52,31 @@
             <a class="navbar-item" href="/">
               <img src="/media/rm_superblog.png">
             </a>
-        
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </a>
+            {% if request.user.is_authenticated %}
+
+            <div class="navbar-item" >
+              <a href="{% url 'profile' %}"><img src="/media/whiteprofile.png"></a>
+
+              </div>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <div class="navbar-item  mr-5">
+              <div class="control">
+                  <a class="button is-light" href="/new_post"><img src="/media/write-post.jpg" alt=""> </a>
+              </div>
+            </div>
+            {% endif %}
           </div>
+          
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
         
-          <div id="navbarBasicExample" class="navbar-menu is-flex" style="background-color: black; color:white">
-            <div class="navbar-start is-flex">
+          <div id="navbarBasicExample" class="navbar-menu" style="background-color: black; color:white">
+            <div class="navbar-start ">
+
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-item is-6 " href="/">Explore</a>
                 <div class="navbar-dropdown">
@@ -83,16 +98,10 @@
 
             </div>
           </div>
-          {% if user.is_authenticated %}
-          <div class="navbar-item is-flex mr-5">
-            <div class="control">
-                <a class="button is-primary is-size-6 is-rounded" href="/new_post"><div style="color: black;"><strong>New Post</strong></div> </a>
-            </div>
-          </div>
-          {% endif %}
 
 
-          <div class="navbar-end is-flex ">
+
+          <div class="navbar-end  ">
               <div class="mb-4">
                 <form method="get" action="{% url 'search' %}">
                   <div class="navbar-item">
@@ -110,34 +119,25 @@
                 </form>
               </div>
             
-
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link"><img src="/media/profile1.png"></a>
-              <div class="navbar-dropdown">
+              <div class="">
                 {% if request.user.is_authenticated %}
-                <a class="navbar-item is-flex" style="background-color: black; color:white" href="{% url 'profile' %}">Profile</a>
-                <a class="navbar-item is-flex" style="background-color: black; color:white" href="{% url 'logout' %}">Logout</a>
+                <span class = 'navbar-item is-size-6 '>Hello, {{request.user}}! </span><a class="navbar-item" style="background-color: black; color:white" href="{% url 'logout' %}"><div class="tag is-danger">Logout</div></a>
                 {% else %}
-                <a class="navbar-item is-flex" style="background-color: black; color:white" href="{% url 'login' %}">Login</a>
-                <a class="navbar-item is-flex" style="background-color: black; color:white" href="{% url 'register' %}">Register</a>
+                <span class = 'navbar-item is-size-6 '><a class="navbar-item" style="background-color: black; color:white" href="{% url 'register' %}"><div class="tag is-warning">Register</div> </a><a class="navbar-item" style="background-color: black; color:white" href="{% url 'login' %}"><div class="tag is-info">Login</div></a>  
+                                
                 {% endif %}
-
+    
               </div>
-            </div>
+
 
           </div>
-          {% if request.user.is_authenticated %}
-          <div class="is-flex">
-            <span class = 'navbar-item is-size-6 '>Hello, {{request.user}}! </span>
-          </div>
 
-          {% endif %}
+
           
 
           
         </nav>
         
-
 
 
 
@@ -162,3 +162,32 @@
   </footer>
 
 </html>
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+// Get all "navbar-burger" elements
+const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+// Add a click event on each of them
+$navbarBurgers.forEach( el => {
+  el.addEventListener('click', () => {
+
+    // Get the target from the "data-target" attribute
+    const target = el.dataset.target;
+    const $target = document.getElementById(target);
+
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    el.classList.toggle('is-active');
+    $target.classList.toggle('is-active');
+
+  });
+
+});
+
+
+
+});
+
+
+  </script>
