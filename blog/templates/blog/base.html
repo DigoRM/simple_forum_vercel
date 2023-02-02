@@ -56,16 +56,14 @@
 
             <div class="navbar-item" >
               <a href="{% url 'profile' %}"><img src="/media/whiteprofile.png"></a>
+              </div>
+              <div class="navbar-item  mr-5">
+                <div class="control">
+                    <a class="button is-light is-rounded" href="/new_post"><img src="/media/write-post.jpg" alt=""> </a>
+                </div>
+              </div>
+            {% endif %}
 
-              </div>
-            {% endif %}
-            {% if user.is_authenticated %}
-            <div class="navbar-item  mr-5">
-              <div class="control">
-                  <a class="button is-light" href="/new_post"><img src="/media/write-post.jpg" alt=""> </a>
-              </div>
-            </div>
-            {% endif %}
           </div>
           
           <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
