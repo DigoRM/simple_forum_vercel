@@ -18,6 +18,9 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('', views.home, name='home'),
     path('most_liked/', views.most_liked, name='most_liked'),
+    path('my_likes/', views.my_likes, name='my_likes'),
+    path('my_posts/', views.my_posts, name='my_posts'),
+
     path('about/', views.about, name='about'),
     
     path('like/<slug:category_slug>/<slug:slug>/', views.like_post, name='like_post'),

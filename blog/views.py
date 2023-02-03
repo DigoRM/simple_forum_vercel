@@ -21,8 +21,9 @@ categories_all = Category.objects.all()
 # Create your views here.
 
 def home(request):
-    posts = Post.objects.filter(status = Post.ACTIVE).annotate(num_comments=Count('comments')).order_by('-created_at')
-
+    posts = Post.objects.filter(status = Post.ACTIVE).annotate(num_comments=Count('comments'), num_likes=Count('likes')).order_by('-created_at')
+    user=request.user
+    
 
     
     return render(request, 'blog/home.html', {'posts':posts, 'categories':categories_all,'authors': [post.author.customer for post in posts]})
@@ -34,6 +35,15 @@ def most_liked(request):
     
     return render(request, 'blog/most_liked.html', {'posts':posts, 'categories':categories_all,'authors': [post.author.customer for post in posts]})
 
+@login_required
+def my_posts(request):
+    posts = Post.objects.filter(author=request.user).annotate(num_comments=Count('comments'), num_likes=Count('likes')).order_by('-created_at')
+    return render(request, 'blog/my_posts.html', {'posts': posts, 'categories':categories_all, 'authors': [post.author.customer for post in posts]})
+
+@login_required
+def my_likes(request):
+    posts = Post.objects.filter(likes__in=[request.user]).annotate(num_comments=Count('comments'), num_likes=Count('likes')).order_by('-created_at')
+    return render(request, 'blog/my_likes.html', {'posts': posts, 'categories':categories_all, 'authors': [post.author.customer for post in posts]})
 
 @login_required
 def new_post(request):

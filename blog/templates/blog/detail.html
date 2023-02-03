@@ -67,6 +67,7 @@
                 <div class="hero is-centered mb-6">
                   <p>{{ post.body }}</p>
                 </div>
+                {% if request.user.is_authenticated %}
                 <div class="hero has-text-centered">
                   <form method="post" action="{% url 'like_post' post.category.slug post.slug %}">
                     {% csrf_token %}
@@ -91,6 +92,50 @@
                           {% endif %}
                         {% endif %}
                   </form>
+                  {% else %}
+
+                  {% if user_liked %}
+                  <div class="hero has-text-centered">
+                    <span class="tag is-medium is-ghost" style="margin-top: 10px;">
+                      <div class="image">
+                        <img class="image is-24x24 " src="/media/heart-icon-3346.png" >
+                      </div>
+                      {% if post.likes.count > 0 %}
+                        {% if post.likes.count == 1 %}
+                        <div style="margin-left: 7px;">
+                          {{ post.likes.count }} like
+                        </div>
+                        {% else %}
+                        <div style="margin-left: 7px;">
+                          {{ post.likes.count }} likes
+                        </div>                        
+                    </span>
+                        {% endif %}
+                      {% endif %}
+                  </div>
+                  {% else %}
+                  <div class="hero has-text-centered">
+                    <span class="tag is-medium is-ghost" style="margin-top: 10px;">
+                      <div class="image">
+                        <img class="image is-24x24 " src="/media/heart.png" >
+                      </div>
+                      {% if post.likes.count > 0 %}
+                        {% if post.likes.count == 1 %}
+                        <div style="margin-left: 7px;">
+                          {{ post.likes.count }} like
+                        </div>
+                        {% else %}
+                        <div style="margin-left: 7px;">
+                          {{ post.likes.count }} likes
+                        </div>                        
+                    </span>
+                        {% endif %}
+                      {% endif %}
+                  </div>
+                  {% endif %}
+                  
+
+                  {% endif %}
                 </div>
 
               </div>

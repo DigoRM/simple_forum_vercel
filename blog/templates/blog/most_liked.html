@@ -15,10 +15,9 @@
 </style>
 
 <section class="hero ">
-
     <div class="hero-body">
       <div class="title has-text-centered">
-        The most liked posts in community
+        Popular Posts
       </div>
       <div class="container">
 
@@ -65,12 +64,19 @@
 
                       <footer class="card-footer has-text-centered">
 
-
-                        <a href="#" class="card-footer-item">
+                        <div class="card-footer-item">
                           <span class="tag is-medium is-ghost" style="margin-top: 10px;">
+                            {% if request.user in post.likes.all %}
+
                             <div class="image">
-                              <img class="image is-24x24 " src="/media/heart.png" >
+                              <img class="image is-24x24 " src="/media/heart-icon-3346.png" >
                             </div>
+                            {% else %}
+                          <div class="image">
+                            <img class="image is-24x24 " src="/media/emptyheart.png" >
+                          </div>
+                            {% endif %}
+
                             {% if post.likes.count > 0 %}
                               {% if post.likes.count == 1 %}
                               <div style="margin-left: 7px;">
@@ -83,9 +89,9 @@
                           </span>
                               {% endif %}
                             {% endif %}
-                        </a>
+                        </div>
                         
-                        <a href="#" class="card-footer-item">
+                        <div class="card-footer-item">
                           <span class="tag is-medium is-ghost" style="margin-left: 10px;" >
                             <div class="image">
                               <img class="image is-24x24 " src="/media/chat.png" >
@@ -103,7 +109,7 @@
                               {% endif %}
                             {% endif %}
 
-                        </a>
+                        </div>
 
     
                       </footer>
