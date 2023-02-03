@@ -29,7 +29,7 @@ def home(request):
     return render(request, 'blog/home.html', {'posts':posts, 'categories':categories_all,'authors': [post.author.customer for post in posts]})
 
 def most_liked(request):
-    posts = Post.objects.filter(status = Post.ACTIVE).annotate(num_comments=Count('comments')).order_by('-likes')
+    posts = Post.objects.filter(status = Post.ACTIVE).annotate(num_comments=Count('comments'), num_likes=Count('likes')).order_by('-num_likes')
 
 
     
