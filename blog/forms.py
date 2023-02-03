@@ -61,3 +61,19 @@ class ProfileImageForm(forms.ModelForm):
         labels={
             'profile_pic':''
         }
+       
+       
+        
+class UserUpdateForm(UserChangeForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and User.objects.filter(email=email).exclude(username=username).exists():
+            raise forms.ValidationError('Email address must be unique')
+        return email

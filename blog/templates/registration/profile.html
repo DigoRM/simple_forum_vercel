@@ -14,8 +14,16 @@
 </style>
 
 <br>
-<div >
-    <a class="button is-danger" style="margin-bottom:20px;" href="{% url 'home' %}"> &#8592; Back</a>
+<div class="section">
+    <div class="columns">
+        <div class="column">
+            <a class="button is-danger mb-20"  href="{% url 'home' %}"> &#8592; Back</a>
+
+        </div>
+        <div class="column  ">
+            <a class="button is-warning is-pulled-right" href="{% url 'reset_password' %}"> <img class="image is-24x24" src="/media/change-password-icon.png" alt=""></a>            
+        </div>
+    </div>
 
     <div class="columns is-horizontal">
         <div class="column is-4">

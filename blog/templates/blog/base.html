@@ -124,12 +124,16 @@
             
               <div class="">
                 {% if request.user.is_authenticated %}
-                <span class = 'navbar-item is-size-6 '>Hello, {{request.user}}! </span><a class="navbar-item" style="background-color: black; color:white" href="{% url 'logout' %}"><div class="tag is-danger">Logout</div></a>
+                <span class = 'navbar-item is-size-6 '>Hello, {{request.user}}! 
+                  <a class="navbar-item" style="background-color: black; color:white" href="{% url 'logout' %}"><div class="tag is-danger">Logout</div></a>
+                </span>
                 {% else %}
-                <span class = 'navbar-item is-size-6 '><a class="navbar-item" style="background-color: black; color:white" href="{% url 'register' %}"><div class="tag is-warning">Register</div> </a><a class="navbar-item" style="background-color: black; color:white" href="{% url 'login' %}"><div class="tag is-info">Login</div></a>  
-                                
+                <span class = 'navbar-item is-size-6 '>
+                  <a class="navbar-item" style="background-color: black; color:white" href="{% url 'register' %}"><div class="tag is-warning">Register</div> </a>
+                  <a class="navbar-item" style="background-color: black; color:white" href="{% url 'login' %}"><div class="tag is-info">Login</div></a>  
+                         
                 {% endif %}
-    
+              </span>
               </div>
 
 

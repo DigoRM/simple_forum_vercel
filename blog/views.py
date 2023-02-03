@@ -2,11 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from blog.models import Post, Comment, Category, Customer
 from django.contrib.auth.models import User
 
-from blog.forms import CommentForm, CreateUserForm, PostForm, CustomerForm, ProfileImageForm
+from blog.forms import CommentForm, CreateUserForm, PostForm, CustomerForm, ProfileImageForm, UserUpdateForm
 from django.db.models import Q
 from django.http import HttpResponse
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -200,4 +199,13 @@ def unauthorized_view(request):
     }
     return render(request, 'registration/unauthorized_page.html',context)
 
-
+@login_required
+def update_user(request):
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = UserUpdateForm(instance=request.user)
+    return render(request, 'registration/update_user.html', {'form': form})
