@@ -9,7 +9,7 @@
 <section class="hero ">
     <div class="hero-body">
       <div class="has-text-centered">
-        <a href="{% url 'new_category' %}" class="button is-primary is-rounded" ><h1 style="color: black;">New Category</h1></a>
+        <a href="{% url 'new_category' %}" class="button is-primary  is-rounded" ><h1 style="color: black;">New Category</h1></a>
       </div>
       <div class="container">
 
@@ -17,8 +17,8 @@
         <section class="section">
           <div class="columns">
             <div class="column is-8 is-offset-2">
-              <div class="card">
-                <div class="card-content is-flex">
+              <div class="box">
+                <div class="box-content is-flex">
                   <a href="{% url 'category_detail' category.slug %}">
                     <div class="columns">
                       <div class="column is-3">
@@ -26,11 +26,11 @@
                         <img src="{{ category.image.url }}" class="image is-128x128">
                         {% endif %}
                       </div>
-                      <div class="column is-9 mt-2">
+                      <div class="column is-9 mt-2 ml-5">
                         <h2 class="subtitle is-6">{{ category.created_at|timesince }}</h2>
-                        <div class="is-pulled-left is-flex"> 
+                        <div class="is-centered is-flex"> 
                             <h1 class="title">{{ category.title }} </h1> 
-                            <div style="margin-left:18px; margin-top: 19px;">({{category.posts.count }})</div>
+                            <div style="margin-left:18px; margin-top: 19px;">({{category.posts.count }}) posts in this category</div>
                         </div>
                       </div>
                     </div>

@@ -55,7 +55,7 @@
                             <img class="profile-pic" src="{{ post.author.customer.profile_pic.url }}">
                             {% endif %}
                         </div>
-                        <h3 class="subtitle is-size-6 mt-5">{{ post.author.username }}</h3></a>
+                        <h3 class="subtitle is-size-6 mt-5">Author: {{ post.author.username }}</h3></a>
                   </div>
                 </div>
                     </a>
@@ -63,7 +63,7 @@
                       <footer class="card-footer has-text-centered">
 
                         <div class="card-footer-item">
-                          <span class="tag is-medium is-ghost" style="margin-top: 10px;">
+                          <span class="tag is-medium is-ghost mt-10">
                             {% if request.user in post.likes.all %}
 
                             <div class="image">
@@ -90,7 +90,7 @@
                         </div>
                         
                         <div class="card-footer-item">
-                          <span class="tag is-medium is-ghost" style="margin-left: 10px;" >
+                          <span class="tag is-medium is-ghost mt-10" style="margin-left: 10px;" >
                             <div class="image">
                               <img class="image is-24x24 " src="/media/chat.png" >
                             </div>

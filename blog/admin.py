@@ -14,7 +14,6 @@ class PostAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     search_fields = ['title']
     list_display = ['title']
-    prepopulated_fields = {'slug':('title',)}
     
 class CommentAdmin(admin.ModelAdmin):
     search_fields = ['name', 'post', 'created_at']

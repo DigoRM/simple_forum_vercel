@@ -52,6 +52,11 @@
             <a class="navbar-item" href="/">
               <img src="/media/rm_superblog.png">
             </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
             {% if request.user.is_authenticated %}
 
             <div class="navbar-item" >
@@ -64,13 +69,10 @@
               </div>
             {% endif %}
 
+
           </div>
           
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
+
         
           <div id="navbarBasicExample" class="navbar-menu" style="background-color: black; color:white">
             <div class="navbar-start ">
