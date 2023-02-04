@@ -1,5 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from blog.models import Category
+
+categories_all = Category.objects.all()
 
 
 def admin_only(view_func):
@@ -15,6 +18,6 @@ def admin_only(view_func):
             return view_func(request, *args, **kwargs)
         
         else:
-            return render(request, 'registration/unauthorized_page.html')
+            return render(request, 'registration/unauthorized_page.html',{'categories':categories_all})
     
     return wrapper_func

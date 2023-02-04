@@ -43,12 +43,10 @@
                   <div class="columns">
                     <div class="column is-9">
                       <a href="{% url 'post_detail' post.category.slug post.slug %}">
-                        <h1 class="title ">{{ post.title }}</h1>
-                        <h3 class="tag">Published at {{ post.created_at|timesince }}</h3>                      
+                        <h1 class="title mb-2">{{ post.title }}</h1>
+                        <h3 class="tag ">Published at {{ post.created_at|timesince }}</h3> 
+                        <div class="justify-content mt-5">{{ post.intro }}</div>   
                       </a>
-                      <div class="card-content mt-2 is-flex">
-                        <div class="justify-content">{{ post.intro }}</div>
-                      </div>
                     </div>
                     <a href="{% url 'user_profile' post.author.id %}">
                       <div class="column is-3 has-text-centered">

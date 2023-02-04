@@ -26,8 +26,21 @@ class Customer(models.Model):
     	return self.name
 
 class Category(models.Model):
+    ACTIVE = 'active'
+    DRAFT = 'draft'
+    
+    CHOICES_STATUS = {
+        (ACTIVE, 'active'),
+        (DRAFT, 'draft')
+    }
+    
     title = models.CharField(max_length=255)
-    slug = models.SlugField()
+    intro = models.CharField(max_length=255)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    slug = AutoSlugField(populate_from='title', slugify_function=slugify, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=10, choices=CHOICES_STATUS, default=ACTIVE)
+    image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     
     class Meta:
         ordering = ('title',)

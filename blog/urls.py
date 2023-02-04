@@ -11,7 +11,7 @@ urlpatterns = [
     path('password_reset_complete/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('reset_password_done/', PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('update_user/', views.update_user, name='update_user'),
+
     path('register/', views.register, name='register'),
     path('accounts/login/', views.loginPage, name='login'),
     path('logout/', views.logoutUser, name='logout'),
@@ -19,6 +19,7 @@ urlpatterns = [
     path('user/<int:user_id>/', views.user_profile, name='user_profile'),
     
     path('categories/', views.categories, name='categories'),
+    path('new_category/', views.new_category, name='new_category'),
     path('new_post/', views.new_post, name='new_post'),
     path('forbidden/', views.unauthorized_view, name='unauthorized'),
 

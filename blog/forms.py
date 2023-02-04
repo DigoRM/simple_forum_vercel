@@ -1,8 +1,18 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
-from .models import Comment, Post, Customer
+from .models import Comment, Post, Customer, Category
 
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model=Category
+        fields = ('title', 'intro', 'image',)
+        
+        widgets = {
+        'title': forms.TextInput(attrs={'size': '50', 'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
+        'intro': forms.TextInput(attrs={'placeholder': 'Write a short intro for this category.', 'size': '50', 'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
+        'image': forms.ClearableFileInput(attrs={'multiple': True, 'class':'button is-rounded'})
+    }
 
 class CommentForm(forms.ModelForm):
     class Meta:
