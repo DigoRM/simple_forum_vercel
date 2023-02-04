@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
 
-{% block title %} Category {% endblock %}
+{% block title %} {{category.title}} {% endblock %}
 
 
 {% block content %}
@@ -17,16 +17,12 @@
 <section class="hero ">
     <div class="hero-body">
       <div class="title has-text-centered">
-        Recent Posts
+        {{category.title}} Recent Posts
       </div>
       <div class="container">
 
         {% for post in posts %}
         <section class="section">
-   
-
-
-
 
                 <div class="box">
                   {% if post.image %}
