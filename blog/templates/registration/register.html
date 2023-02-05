@@ -64,26 +64,37 @@
 					<div class="card-header">
 						<div class="card-header-title is-centered is-size-4" style="color:white">REGISTER ACCOUNT</div>
 					</div>
-					<div class="d-flex justify-content-center form_container">
+					<div class="card-content">
+						
 						<form method="POST" action="">
                         	{% csrf_token %}
+							
 
-						<div class="input-group mb-3">
-							<span class="icon is-warning" style="background: #f7ba5b ;color: white ;border: 0 ;border-radius: 0.25rem 0 0 0.25rem ;"><i class="fas fa-user"></i></span>
-							{{form.username}}
-						</div>
-						<div class="input-group mb-3">
-							<span class="icon is-warning" style="background: #f7ba5b ;color: white ;border: 0 ;border-radius: 0.25rem 0 0 0.25rem ;"><i class="fas fa-envelope-square"></i></span>
-							{{form.email}}
-						</div>
-						<div class="input-group mb-3">
-							<span class="icon is-warning" style="background: #f7ba5b ;color: white ;border: 0 ;border-radius: 0.25rem 0 0 0.25rem ;"><i class="fas fa-key"></i></span>
-							{{form.password1}}
-						</div>
-						<div class="input-group mb-3">
-							<span class="icon is-warning" style="background: #f7ba5b ;color: white ;border: 0 ;border-radius: 0.25rem 0 0 0.25rem ;"><i class="fas fa-key"></i></span>
-							{{form.password2}}
-						</div>
+							<div class="field has-addons has-addons-centered">
+								<div class="button is-static" style="background: #f7ba5b ;color: white ;border: 0 ;border-radius: 0.25rem 0 0 0.25rem ;">
+								  <i class="fas fa-user"></i>
+								</div>
+								<div style="width: auto;"></div>
+								{{form.username}}
+						  	</div>
+							<div class="field has-addons has-addons-centered">
+								<div class="button is-static" style="background: #f7ba5b ;color: white ;border: 0 ;border-radius: 0.25rem 0 0 0.25rem ;">
+									<i class="fas fa-envelope-square"></i>
+								</div>
+								{{form.email}}
+							</div>
+							<div class="field has-addons has-addons-centered">
+								<div class="button is-static" style="background: #f7ba5b ;color: white ;border: 0 ;border-radius: 0.25rem 0 0 0.25rem ;">
+								  <i class="fas fa-key"></i>
+								</div>
+								{{form.password1}}
+						  	</div>
+							<div class="field has-addons has-addons-centered">
+								<div class="button is-static" style="background: #f7ba5b ;color: white ;border: 0 ;border-radius: 0.25rem 0 0 0.25rem ;">
+									<i class="fas fa-key"></i>
+								</div>
+								{{form.password2}}
+							</div>
 
 				   		<div class="d-flex justify-content-center mt-3 login_container">
 				 			<button class="button is-primary mt-4" type="submit" value="Register Account"><div style="color:black"><strong>OK</strong> </div> 
@@ -97,7 +108,7 @@
 
 		
 					<div class="mt-4">
-						<div class="d-flex justify-content-center links" style="color: white;" place>
+						<div class="d-flex justify-content-center links" style="color: white;" >
 							Already have an account? <a href="{% url 'login' %}" class="ml-3" >Login</a>
 						</div>
 					</div>
