@@ -78,7 +78,7 @@
             <div class="navbar-start ">
 
               <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-item is-6 " >Explore</a>
+                <a class="navbar-item is-6 " href="/" >Explore</a>
                 <div class="navbar-dropdown">
                   <a class="navbar-item is-size-6" style="background-color: black; color:white" href="{% url 'home' %}">News</a>
                   <a class="navbar-item is-size-6" style="background-color: black; color:white" href="{% url 'most_liked' %}">Popular</a>
@@ -92,6 +92,7 @@
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-item is-size-6" href="/categories">Categories</a>
                 <div class="navbar-dropdown ">
+                  <a href="/categories" class="navbar-item is-size-6" style="background-color: black; color:white">All</a>
                   {% for category in categories %}
                   <a class="navbar-item is-size-6" style="background-color: black; color:white" href="{% url 'category_detail' category.slug %}">{{category.title}}</a>
                   {% endfor %}

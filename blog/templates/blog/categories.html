@@ -17,8 +17,8 @@
         <section class="section">
           <div class="columns">
             <div class="column is-8 is-offset-2">
-              <div class="box">
-                <div class="box-content is-flex">
+              <div class="card is-flex">
+                <div class="card-content is-flex">
                   <a href="{% url 'category_detail' category.slug %}">
                     <div class="columns">
                       <div class="column is-3">
@@ -30,7 +30,13 @@
                         <h2 class="subtitle is-6">{{ category.created_at|timesince }}</h2>
                         <div class="is-centered is-flex"> 
                             <h1 class="title">{{ category.title }} </h1> 
-                            <div style="margin-left:18px; margin-top: 19px;">({{category.posts.count }}) posts in this category</div>
+                            <div style="margin-left:18px; margin-top: 19px;">({{category.posts.count}}) posts in this category</div>
+                        </div>
+                        <div class="card-footer">
+                          <div class="card-footer-item">
+                            <h6 class="subtitle is-size-6 is-centered">{{category.intro}}</h6>
+
+                          </div>
                         </div>
                       </div>
                     </div>
