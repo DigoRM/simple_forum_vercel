@@ -148,7 +148,7 @@ def loginPage(request):
             return redirect('/')
         else:
             messages.info(request, 'Username or Password is incorrect.')
-    context={}
+    context={'categories':categories_all,}
     return render(request, 'registration/login.html', context)    
 
 def logoutUser(request):
@@ -174,7 +174,9 @@ def register(request):
                 return redirect('login')
         
         
-        context = {'form':form}
+        context = {'form':form,
+                   'categories':categories_all,}
+        
         return render(request, 'registration/register.html', context)
     
 

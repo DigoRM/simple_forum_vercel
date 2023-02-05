@@ -27,16 +27,17 @@
 
     <div class="columns is-horizontal">
         <div class="column is-5">
-            <div class="card card-body">
+            <div class="card">
                 <div calss="card-header">
                     <div class="card-header-title is-centered is-vcentered">
-                        <strong>My Profile</strong>
+                        <div class="title is-5">My Profile</div>
                     </div>
                     <hr>
 
                 </div>
+            
 
-                <div style="text-align: center;">
+                <div class="card-body" style="text-align: center;">
                     {% if request.user.customer.profile_pic %}
                     <img class="profile-pic" src="{{request.user.customer.profile_pic.url}}" >
                     {% endif %}

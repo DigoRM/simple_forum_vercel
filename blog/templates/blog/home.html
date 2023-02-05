@@ -29,11 +29,11 @@
 
 
                 <div class="box">
-                  {% if post.image %}
+                  {% if post.icon %}
                   <a href="{% url 'post_detail' post.category.slug post.slug %}">
                   <div class="hero">
-                    <figure class="image img is-fullwidth mb-6">
-                      <img src="{{ post.image.url }}">
+                    <figure class="icon img is-fullwidth mb-6">
+                      <img src="{{ post.icon.url }}">
                   </figure>
                   </div>
                   </a>
@@ -63,49 +63,34 @@
                       <footer class="card-footer has-text-centered">
 
                         <div class="card-footer-item">
-                          <span class="tag is-medium is-ghost mt-10">
+                          <tag class="tag is-flex is-ghost mt-10">
                             {% if request.user in post.likes.all %}
 
-                            <div class="image">
-                              <img class="image is-24x24 " src="/media/heart-icon-3346.png" >
+                            <div class="icon">
+                              <img class="icon is-24x24 " src="/media/heart-icon-3346.png" >
                             </div>
                             {% else %}
-                          <div class="image">
-                            <img class="image is-24x24 " src="/media/emptyheart.png" >
-                          </div>
+                            <div class="icon">
+                              <img class="icon is-24x24 " src="/media/emptyheart.png" >
+                            </div>
                             {% endif %}
+                            <div style="margin-left: 7px;">
+                              {{ post.likes.count }}
+                            </div>
+                          </tag>
 
-                            {% if post.likes.count > 0 %}
-                              {% if post.likes.count == 1 %}
-                              <div style="margin-left: 7px;">
-                                {{ post.likes.count }} like
-                              </div>
-                              {% else %}
-                              <div style="margin-left: 7px;">
-                                {{ post.likes.count }} likes
-                              </div>                        
-                          </span>
-                              {% endif %}
-                            {% endif %}
                         </div>
                         
                         <div class="card-footer-item">
-                          <span class="tag is-medium is-ghost mt-10" style="margin-left: 10px;" >
-                            <div class="image">
-                              <img class="image is-24x24 " src="/media/chat.png" >
+                          <tag class="tag is-flex is-ghost mt-10" style="margin-left: 10px;" >
+                            <div class="icon">
+                              <img class="icon is-24x24 " src="/media/chat.png" >
                             </div>
-                            {% if post.num_comments %}
-                              {% if post.num_comments == 1 %}
                               <div style="margin-left: 7px;">
-                                {{ post.num_comments }} comment
-                              </div>
-                              {% else %}
-                              <div style="margin-left: 7px;">
-                                {{ post.num_comments }} comments
+                                {{ post.num_comments }}
                               </div>                        
-                          </span>
-                              {% endif %}
-                            {% endif %}
+                          </tag>
+
 
                         </div>
 

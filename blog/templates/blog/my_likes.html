@@ -62,58 +62,42 @@
                 </div>
                     </a>
 
-                      <footer class="card-footer has-text-centered">
+                    <footer class="card-footer has-text-centered">
 
-                        <div class="card-footer-item">
-                          <span class="tag is-medium is-ghost" style="margin-top: 10px;">
-                            {% if request.user in post.likes.all %}
+                      <div class="card-footer-item">
+                        <tag class="tag is-flex is-ghost mt-10">
+                          {% if request.user in post.likes.all %}
 
-                            <div class="image">
-                              <img class="image is-24x24 " src="/media/heart-icon-3346.png" >
-                            </div>
-                            {% else %}
-                          <div class="image">
-                            <img class="image is-24x24 " src="/media/emptyheart.png" >
+                          <div class="icon">
+                            <img class="icon is-24x24 " src="/media/heart-icon-3346.png" >
                           </div>
-                            {% endif %}
+                          {% else %}
+                          <div class="icon">
+                            <img class="icon is-24x24 " src="/media/emptyheart.png" >
+                          </div>
+                          {% endif %}
+                          <div style="margin-left: 7px;">
+                            {{ post.likes.count }}
+                          </div>
+                        </tag>
 
-                            {% if post.likes.count > 0 %}
-                              {% if post.likes.count == 1 %}
-                              <div style="margin-left: 7px;">
-                                {{ post.likes.count }} like
-                              </div>
-                              {% else %}
-                              <div style="margin-left: 7px;">
-                                {{ post.likes.count }} likes
-                              </div>                        
-                          </span>
-                              {% endif %}
-                            {% endif %}
-                        </div>
-                        
-                        <div class="card-footer-item">
-                          <span class="tag is-medium is-ghost" style="margin-left: 10px;" >
-                            <div class="image">
-                              <img class="image is-24x24 " src="/media/chat.png" >
-                            </div>
-                            {% if post.num_comments %}
-                              {% if post.num_comments == 1 %}
-                              <div style="margin-left: 7px;">
-                                {{ post.num_comments }} comment
-                              </div>
-                              {% else %}
-                              <div style="margin-left: 7px;">
-                                {{ post.num_comments }} comments
-                              </div>                        
-                          </span>
-                              {% endif %}
-                            {% endif %}
+                      </div>
+                      
+                      <div class="card-footer-item">
+                        <tag class="tag is-flex is-ghost mt-10" style="margin-left: 10px;" >
+                          <div class="icon">
+                            <img class="icon is-24x24 " src="/media/chat.png" >
+                          </div>
+                            <div style="margin-left: 7px;">
+                              {{ post.num_comments }}
+                            </div>                        
+                        </tag>
 
-                        </div>
 
-    
-                      </footer>
+                      </div>
 
+  
+                    </footer>
                   
 
 
