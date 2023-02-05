@@ -147,7 +147,7 @@
                 
 
                 <div class="card mb-6">
-                  <div class="card card-header-title">Comments</div>
+                  <div class="card card-header-title">Comments ({{post.comments.count}})</div>
                   {% for comment in post.comments.all %}
                   <article class="card-content">
                       <div class="content">
