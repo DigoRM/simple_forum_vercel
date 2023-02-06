@@ -9,8 +9,8 @@ class CategoryForm(forms.ModelForm):
         fields = ('title', 'intro', 'image',)
         
         widgets = {
-        'title': forms.TextInput(attrs={'size': '50', 'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
-        'intro': forms.TextInput(attrs={'placeholder': 'Write a short intro for this category.', 'size': '50', 'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
+        'title': forms.TextInput(attrs={ 'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
+        'intro': forms.TextInput(attrs={'placeholder': 'Write a short intro for this category.',  'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
         'image': forms.ClearableFileInput(attrs={'multiple': True, 'class':'button is-rounded'})
     }
 
@@ -49,8 +49,8 @@ class PostForm(forms.ModelForm):
         fields = ('category', 'title', 'intro', 'body', 'image',)
         
         widgets = {
-        'title': forms.TextInput(attrs={'size': '50', 'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
-        'intro': forms.TextInput(attrs={'placeholder': 'Write a good intro for you post.', 'size': '50', 'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
+        'title': forms.TextInput(attrs={ 'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
+        'intro': forms.TextInput(attrs={'placeholder': 'Write a good intro for you post.',  'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
         'body': forms.Textarea(attrs={'rows': 6, 'cols': 100, 'placeholder': 'Write all the content here:', 'class':'input textarea'}),
         'image': forms.ClearableFileInput(attrs={'multiple': True, 'class':'button is-rounded'})
     }
@@ -61,15 +61,29 @@ class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = '__all__'
-        exclude = ['user','profile_pic']
+        exclude = ['user']
+        field_order = ['profile_pic', 'name', 'company','role','skills','interests']
+
 
         widgets = {
-        'name': forms.TextInput(attrs={'size': '50', 'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
-        'company': forms.TextInput(attrs={'size': '50', 'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
-        'role': forms.TextInput(attrs={'size': '50', 'class': 'input is-success is-rounded', 'style':'margin:10px;'}),
-        'skills': forms.Textarea(attrs={'rows': 6, 'cols': 100, 'placeholder': 'Write your main skills today:', 'class': 'input textarea', 'style':'margin:10px;'}),
-        'interests': forms.Textarea(attrs={'rows': 6, 'cols': 100, 'placeholder': 'Write the skill you want to learn:', 'class': 'input textarea', 'style':'margin:10px;'}),
+        'profile_pic': forms.ClearableFileInput(attrs={'multiple': True, 'class':'button is-rounded is-flex mb-3','style':'max-width:95%'}),
+
+        'name': forms.TextInput(attrs={ 'class': 'input is-success is-rounded is-flex mb-5', 'placeholder': 'Name','style':'max-width:100%'}),
+        'company': forms.TextInput(attrs={ 'class': 'input is-success is-rounded is-flex mb-5', 'placeholder': 'Company','style':'max-width:100%'}),
+        'role': forms.TextInput(attrs={ 'class': 'input is-success is-rounded is-flex mb-5', 'placeholder': 'Role','style':'max-width:100%'}),
+        'skills': forms.Textarea(attrs={'rows': 6, 'cols': 50, 'placeholder': 'Write your main skills today:', 'class': 'input textarea mb-5 is-flex','style':'max-width:100%'}),
+        'interests': forms.Textarea(attrs={'rows': 6, 'cols': 50, 'placeholder': 'Write the skill you want to learn:', 'class': 'input textarea mb-5 is-flex','style':'max-width:100%'}),
     }
+        labels={
+            'profile_pic':'',
+            'name': 'Name',
+            'company': 'Company',
+            'role': 'Role',
+
+
+        }
+        
+
 
 class ProfileImageForm(forms.ModelForm):
     class Meta:

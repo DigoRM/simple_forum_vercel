@@ -189,16 +189,14 @@ def profile(request):
     form_image = ProfileImageForm()
     
     if request.method == 'POST':
-        form = CustomerForm(request.POST, instance=customer)
-        form_image = ProfileImageForm(request.POST, request.FILES,instance=customer)
-        if form.is_valid() and form_image.is_valid():
+        form = CustomerForm(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
             form.save()
             
     context = {'form':form,
                'categories':categories_all,
                'customer':customer,
                'email':email,
-               'form_image':form_image
                }
     return render(request, 'registration/profile.html', context)
 

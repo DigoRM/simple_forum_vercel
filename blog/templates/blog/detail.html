@@ -16,12 +16,13 @@
 		max-height:150px;
 		margin: 0 auto;
 		border-radius: 100%;
+
 	}
 
 </style>
 
 
-<section class="hero ">
+<section class="hero is-fullheight ">
     <div class="hero-body">
       <div class="container">
         <div class="columns">
@@ -29,46 +30,55 @@
           </div>
         </div>
         <section class="hero">
-
-            {% if post.image %}
-            <figure class="image mb-6">
-                <img src="{{ post.image.url }}">
-            </figure>
-            {% endif %}
-
-          <div class="columns">
-
-            <div class="column is-9 is-offset-2">
-              <div class="content is-medium"><div class="columns">
-                <div class="column is-vertical-center">
-                    <div class="title is-size-5">
-                      <strong>Category: </strong><a href="{% url 'category_detail' post.category.slug %}">{{ post.category }}</a>
-                    </div>
-                    <div class="subtitle is-size-5">
-                      <h2 class="subtitle is-6 is-centered">Published at {{ post.created_at|timesince}} ago</h2> 
-                    </div>
-                </div>
-
+          <div class="box">
+            <div class="box-content">
+              {% if post.image %}
+              <figure class="image">
+                  <img src="{{ post.image.url }}">
+              </figure>
+              {% endif %}
+  
+              <div class="columns">
                 <div class="column">
+                  <div class="title is-size-5 ml-5 mt-6">
+                    <strong>Category: </strong><a href="{% url 'category_detail' post.category.slug %}">{{ post.category }}</a>
+                  </div>
+                  <div class="subtitle is-size-5 ml-5">
+                    <h2 class="subtitle is-6">Published at {{ post.created_at|timesince}} ago</h2> 
+                  </div>
+
+                </div>
+                <div class="column has-text-centered is-pulled-right">
                   {% if post.author.customer.profile_pic.url %}
                   <div class="has-text-centered">
-                    <h2 class="subtitle is-6">Post created by <a href="{% url 'user_profile' user_id=post.author.id %}">{{post.author}}</a></h2> 
-
-                    <img class="profile-pic2" src="{{ post.author.customer.profile_pic.url }}">
+                  <h2 class="subtitle is-6 mt-5">Post created by <a href="{% url 'user_profile' user_id=post.author.id %}">{{post.author}}</a></h2> 
+      
+                  <img class="profile-pic2" src="{{ post.author.customer.profile_pic.url }}">
+                  {% endif %}
 
                   </div>
-                  {% endif %}
-                     
                 </div>
               </div>
-              <div class="hero">
-                <h1 class="title">{{ post.title }}</h1>
-                <p><strong>{{ post.intro }}</p></strong>
-                <div class="hero is-centered mb-6">
-                  <p>{{ post.body }}</p>
+
+
+              <hr>
+              <div class="columns">
+                <div class="column is-12">
+                  <h1 class="title is-size-2 ml-5 mt-6" >{{ post.title }}</h1>
+                  <div class="content">
+                    <h1 class="subtitle mt-4 mb-6 is-size-5 ml-5 is-justified"> {{ post.intro }}</h1>
+    
+                  </div>
+                  <div class="hero">
+                    <div class="hero-body">                    <h1 class="subtitle mt-2 mb-6 is-size-5">{{ post.body|linebreaks }}</h1>
+                    </div>
+
+                  </div>
                 </div>
-                {% if request.user.is_authenticated %}
-                <div class="hero has-text-centered">
+              </div>
+              <div class="columns">
+                <div class="column is-12 has-text-centered">
+                  {% if request.user.is_authenticated %}
                   <form method="post" action="{% url 'like_post' post.category.slug post.slug %}">
                     {% csrf_token %}
                         <button class="button is-ghost mb-6" type="submit" value="Like">
@@ -133,18 +143,18 @@
                       {% endif %}
                   </div>
                   {% endif %}
-                  
-
                   {% endif %}
+
                 </div>
-
               </div>
-                   
-                    
-                  
+            </div>
+          </div>
 
-      
-                
+          <div class="columns">
+
+            <div class="column is-10 is-offset-1">
+              <div class="content is-medium"><div class="columns">
+                <div class="column is-vertical-center">
 
                 <div class="card mb-6">
                   <div class="card card-header-title">Comments ({{post.comments.count}})</div>
@@ -164,7 +174,7 @@
                         </div>
                             <div class="column is-9 is-vertical-center">
                               <div class="card-content ">
-                                <div class="is-vcentered"> <h5 class="is-size-6">{{ comment.body }}</h5></div>
+                                <div class="content is-vcentered"> <h5 class="is-size-6">{{ comment.body }}</h5></div>
 
                               </div>
                             </div>
