@@ -65,13 +65,13 @@
               <hr>
               <div class="columns">
                 <div class="column is-12">
-                  <h1 class="title is-size-2 ml-5 mt-6" >{{ post.title }}</h1>
-                  <div class="content">
-                    <h1 class="subtitle mt-4 mb-6 is-size-5 ml-5 is-justified"> {{ post.intro }}</h1>
+                  <h1 class="title is-size-2 ml-5" >{{ post.title|linebreaks }}</h1>
+                  <div class="container">
+                    <h1 class="subtitle mt-4 mb-6 is-size-5 ml-2 is-justified"><strong>{{ post.intro }}</strong> </h1>
     
                   </div>
                   <div class="hero">
-                    <div class="hero-body">                    <h1 class="subtitle mt-2 mb-6 is-size-5">{{ post.body|linebreaks }}</h1>
+                    <div class="container">                    <h1 class="subtitle mt-2 ml-2 mb-6 is-size-5">{{ post.body|linebreaks }}</h1>
                     </div>
 
                   </div>
