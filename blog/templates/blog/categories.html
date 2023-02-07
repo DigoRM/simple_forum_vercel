@@ -15,9 +15,9 @@
 
         {% for category in categories %}
         <section class="section">
-          <div class="columns">
-            <div class="column is-8 is-offset-2">
-              <div class="card is-flex">
+          <div class="columns is-fullheight">
+            <div class="column is-12 ">
+              <div class="card is-fullheight">
                 <div class="card-content is-flex">
                   <a href="{% url 'category_detail' category.slug %}">
                     <div class="columns">
@@ -27,14 +27,12 @@
                         {% endif %}
                       </div>
                       <div class="column is-9 mt-2 ml-5">
-                        <h2 class="subtitle is-6">{{ category.created_at|timesince }}</h2>
-                        <div class="is-centered is-flex"> 
-                            <h1 class="title">{{ category.title }} </h1> 
-                            <div style="margin-left:18px; margin-top: 19px;">({{category.posts.count}}) posts in this category</div>
-                        </div>
+                        <h2 class="subtitle is-size-7">{{ category.created_at|timesince }}</h2>
+                        <h1 class="title is-flex">{{ category.title }} </h1>
+                        <h5 class="subtitle is-size-6">({{category.posts.count}}) posts in this category</h5>
                         <div class="card-footer">
                           <div class="card-footer-item">
-                            <h6 class="subtitle is-size-6 is-centered">{{category.intro}}</h6>
+                            <h6 class="subtitle is-size-6">{{category.intro}}</h6>
 
                           </div>
                         </div>
