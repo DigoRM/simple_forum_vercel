@@ -48,10 +48,10 @@
                   </div>
 
                 </div>
-                <div class="column has-text-centered is-pulled-right">
+                <div class="column has-text-centered">
                   {% if post.author.customer.profile_pic.url %}
                   <div class="has-text-centered">
-                  <div class="image is-pulled-right mr-6">
+                  <div class="imaget">
                     <h2 class="subtitle is-6 mt-5">Post created by <a href="{% url 'user_profile' user_id=post.author.id %}">{{post.author}}</a></h2> 
                     <img class="profile-pic2" src="{{ post.author.customer.profile_pic.url }}">
                   </div>
@@ -65,8 +65,8 @@
               <hr>
               <div class="columns">
                 <div class="column is-12">
-                  <h1 class="title is-size-2 ml-5" >{{ post.title|linebreaks }}</h1>
                   <div class="container">
+                    <h1 class="title is-size-2 ml-5" >{{ post.title|linebreaks }}</h1>
                     <h1 class="subtitle mt-4 mb-6 is-size-5 ml-2 is-justified"><strong>{{ post.intro }}</strong> </h1>
     
                   </div>

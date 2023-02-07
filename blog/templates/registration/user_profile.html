@@ -43,20 +43,20 @@
         <div class="column">
             <div class="card">
                 <div class="card-content">
-                    <div class="content">
+                    <div class="container">
                         <p><strong>Name: </strong>{{ customer.name }}</p>
                     </div>
-                    <div class="content">
+                    <div class="container">
                         <p><strong>Company: </strong>{{ customer.company }}</p>
                     </div>
-                    <div class="content">
+                    <div class="container">
                         <p><strong>Role: </strong>{{ customer.role }}</p>
                     </div>
-                    <div class="content">
-                        <p><strong>Skills: </strong><div class="card">{{ customer.skills }}</div></p>
+                    <div class="container">
+                        <p><strong>Skills: </strong><div class="card">{{ customer.skills|linebreaks }}</div></p>
                     </div>
-                    <div class="content">
-                        <p><strong>Interests: </strong><div class="card">{{ customer.interests }}</div></p> 
+                    <div class="container">
+                        <p><strong>Interests: </strong><div class="card">{{ customer.interests|linebreaks }}</div></p> 
 
                     </div>
  
