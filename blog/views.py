@@ -207,6 +207,7 @@ def user_profile(request, user_id):
     context = {
         'customer': customer,
         'user':user,
+        'categories':categories_all,
     }
     return render(request, 'registration/user_profile.html', context)
 
