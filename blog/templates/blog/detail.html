@@ -13,7 +13,7 @@
 	}
   .profile-pic2{
 		max-width: 150px;
-		max-height:150px;
+		max-height:100px;
 		margin: 0 auto;
 		border-radius: 100%;
 
@@ -51,9 +51,10 @@
                 <div class="column has-text-centered is-pulled-right">
                   {% if post.author.customer.profile_pic.url %}
                   <div class="has-text-centered">
-                  <h2 class="subtitle is-6 mt-5">Post created by <a href="{% url 'user_profile' user_id=post.author.id %}">{{post.author}}</a></h2> 
-      
-                  <img class="profile-pic2" src="{{ post.author.customer.profile_pic.url }}">
+                  <div class="image is-pulled-right mr-6">
+                    <h2 class="subtitle is-6 mt-5">Post created by <a href="{% url 'user_profile' user_id=post.author.id %}">{{post.author}}</a></h2> 
+                    <img class="profile-pic2" src="{{ post.author.customer.profile_pic.url }}">
+                  </div>
                   {% endif %}
 
                   </div>
