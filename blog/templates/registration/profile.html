@@ -48,7 +48,9 @@
                             {% endif %}
                             <form method="POST" class="mt-3 is-centered" action="" enctype="multipart/form-data">
                                 {% csrf_token %}
+				 <div class="has-text-centered">
                                 {{form.profile_pic}}
+				 </div>
                         </div>
                         <div class="column has-text-centered">
                             
